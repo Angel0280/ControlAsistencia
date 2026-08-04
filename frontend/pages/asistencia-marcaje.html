@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Marcar Asistencia</title>
+
+<link rel="stylesheet" href="../css/base/variables.css">
+<link rel="stylesheet" href="../css/base/reset.css">
+<link rel="stylesheet" href="../css/layout/app-shell.css">
+<link rel="stylesheet" href="../css/layout/sidebar.css">
+<link rel="stylesheet" href="../css/components/botones.css">
+<link rel="stylesheet" href="../css/components/tarjetas.css">
+<link rel="stylesheet" href="../css/components/badges.css">
+</head>
+<body data-page="asistencia" data-id-empleado="1">
+
+<div class="app-shell">
+  <div data-include="components/sidebar.html"></div>
+
+  <div class="main">
+    <div class="topbar">
+      <h2>Registro de Asistencia</h2>
+      <span class="pill">Empleado: Ana Martínez · EMP-0001</span>
+    </div>
+
+    <div class="kiosk">
+      <div class="box clock-card">
+        <span class="lbl">Hora actual</span>
+        <div class="clock-time" id="clock-time">--:--:--</div>
+        <div class="clock-date" id="clock-date">--</div>
+
+        <div class="kiosk-actions">
+          <button id="btn-marcar-entrada" class="btn primary">MARCAR ENTRADA</button>
+          <button id="btn-marcar-salida" class="btn ghost">MARCAR SALIDA</button>
+        </div>
+
+        <div class="meta-row">
+          <span class="meta-chip">📍 Ubicación: Oficina Central</span>
+          <span class="meta-chip">🌐 IP detectada: (la captura el backend)</span>
+          <span class="meta-chip estado-dia">Estado del día: — sin marcar —</span>
+        </div>
+      </div>
+
+      <div class="box status-list">
+        <span class="lbl">Mi historial reciente</span>
+        <div class="row"><span>Lun 03 ago</span><span>07:58 – 17:05</span><span class="tag presente">Presente</span></div>
+        <div class="row"><span>Vie 31 jul</span><span>08:12 – 17:00</span><span class="tag tarde">Tarde</span></div>
+        <div class="row"><span>Jue 30 jul</span><span>— : —</span><span class="tag falta">Falta</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/incluir-componentes.js"></script>
+<script src="../js/reloj.js"></script>
+<script src="../js/asistencia.js"></script>
+</body>
+</html>

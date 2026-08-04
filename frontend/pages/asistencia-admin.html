@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Control de Asistencia · Administración</title>
+
+<link rel="stylesheet" href="../css/base/variables.css">
+<link rel="stylesheet" href="../css/base/reset.css">
+<link rel="stylesheet" href="../css/layout/app-shell.css">
+<link rel="stylesheet" href="../css/layout/sidebar.css">
+<link rel="stylesheet" href="../css/components/botones.css">
+<link rel="stylesheet" href="../css/components/tablas.css">
+<link rel="stylesheet" href="../css/components/badges.css">
+</head>
+<body data-page="asistencia">
+
+<div class="app-shell">
+  <div data-include="components/sidebar.html"></div>
+
+  <div class="main">
+    <div class="topbar">
+      <h2>Control de Asistencia — Todos los empleados</h2>
+      <button class="btn primary">+ Registrar manual</button>
+    </div>
+
+    <div class="filters-row">
+      <div class="field"><span class="lbl">Fecha</span><input type="date" class="input"></div>
+      <div class="field"><span class="lbl">Departamento</span><select class="input"></select></div>
+      <div class="field"><span class="lbl">Estado</span><select class="input"></select></div>
+      <div class="field" style="min-width:180px;"><span class="lbl">Buscar empleado</span><input type="text" class="input"></div>
+      <button class="btn ghost">Filtrar</button>
+      <button class="btn ghost">Exportar</button>
+    </div>
+
+    <div class="box" style="padding:0;">
+      <table class="wf">
+        <thead>
+          <tr>
+            <th>Empleado</th><th>Depto.</th><th>Entrada</th><th>Salida</th>
+            <th>Horas</th><th>Ubicación</th><th>IP marcaje</th><th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-asistencia-body">
+          <!-- filas cargadas dinámicamente desde /api/asistencia -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="../js/incluir-componentes.js"></script>
+</body>
+</html>

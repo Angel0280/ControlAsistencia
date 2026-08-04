@@ -1,0 +1,24 @@
+/* ============================================================
+   BASE / RESET
+   Normaliza el documento antes de aplicar layout/componentes.
+   ============================================================ */
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  font-family: var(--font-base);
+  color: var(--text);
+}
+
+h1,h2,h3,p{ margin:0; }
+
+/* Utilidad compartida por varios componentes (tablas, tarjetas, filtros) */
+.lbl{
+  font-size:10px;
+  color:var(--text-soft);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  margin-bottom:4px;
+  display:block;
+}

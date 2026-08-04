@@ -1,0 +1,29 @@
+/* ============================================================
+   COMPONENTS / BOTONES
+   ============================================================ */
+.btn{
+  display:inline-block;
+  border:1.5px solid var(--line);
+  padding:8px 16px;
+  font-size:12px;
+  font-weight:bold;
+  text-align:center;
+  background:#fff;
+  cursor:pointer;
+}
+
+.btn.primary{
+  background:var(--text);
+  color:#fff;
+  border-color:var(--text);
+}
+
+.btn.ghost{
+  color:var(--text-soft);
+  border-style:dashed;
+}
+
+.btn:focus-visible{
+  outline:2px solid var(--focus);
+  outline-offset:2px;
+}

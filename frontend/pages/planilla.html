@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Planilla</title>
+
+<link rel="stylesheet" href="../assets/css/base/variables.css">
+<link rel="stylesheet" href="../assets/css/base/reset.css">
+<link rel="stylesheet" href="../assets/css/layout/app-shell.css">
+<link rel="stylesheet" href="../assets/css/layout/sidebar.css">
+<link rel="stylesheet" href="../assets/css/components/botones.css">
+<link rel="stylesheet" href="../assets/css/components/tarjetas.css">
+<link rel="stylesheet" href="../assets/css/components/tablas.css">
+<link rel="stylesheet" href="../assets/css/components/badges.css">
+</head>
+<body data-page="planilla">
+
+<div class="app-shell">
+  <div data-include="components/sidebar.html"></div>
+
+  <div class="main">
+    <div class="topbar">
+      <h2>Planilla — Agosto 2026</h2>
+      <button id="btn-generar-planilla" class="btn primary">Generar planilla del período</button>
+    </div>
+
+    <div class="filters-row">
+      <div class="field"><span class="lbl">Mes</span><select id="filtro-mes" class="input"></select></div>
+      <div class="field"><span class="lbl">Año</span><input id="filtro-anio" type="number" class="input"></div>
+      <div class="field"><span class="lbl">Quincena</span><select id="filtro-quincena" class="input"></select></div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="box kpi-card"><span class="lbl">Total empleados</span><div class="num" id="kpi-empleados">10</div></div>
+      <div class="box kpi-card"><span class="lbl">Salario bruto total</span><div class="num" id="kpi-bruto">C$ 0</div></div>
+      <div class="box kpi-card"><span class="lbl">Total deducciones</span><div class="num" id="kpi-deducciones">C$ 0</div></div>
+      <div class="box kpi-card"><span class="lbl">Salario neto total</span><div class="num" id="kpi-neto">C$ 0</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="box" style="padding:0;">
+        <table class="wf">
+          <thead>
+            <tr>
+              <th>Empleado</th><th>Bruto</th><th>H. Extra</th><th>Ausencias</th>
+              <th>Deducciones</th><th>Neto</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="tabla-planilla-body">
+            <!-- filas cargadas dinámicamente desde /api/planilla -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box soft" style="padding:14px;" id="panel-deducciones">
+        <span class="lbl">Detalle de deducciones</span>
+        <p class="lbl">Selecciona un empleado en la tabla</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/incluir-componentes.js"></script>
+<script src="../js/planilla.js"></script>
+</body>
+</html>

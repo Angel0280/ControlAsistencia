@@ -1,0 +1,19 @@
+/* ============================================================
+   BASE / VARIABLES
+   Tokens de color y tipografía usados en todo el sistema.
+   Ajustar aquí = cambia todo el sitio.
+   ============================================================ */
+:root{
+  --bg:#f2f2f2;
+  --panel:#ffffff;
+  --line:#9a9a9a;
+  --line-soft:#c7c7c7;
+  --text:#2b2b2b;
+  --text-soft:#6f6f6f;
+  --focus:#1f6feb;
+  --block:#e6e6e6;
+
+  --font-base: "Helvetica Neue", Arial, sans-serif;
+
+  --radius-0: 0px; /* el sistema usa esquinas rectas, no border-radius */
+}

@@ -1,0 +1,40 @@
+/* ============================================================
+   LAYOUT / APP SHELL
+   Estructura general de cada pantalla: sidebar fijo + contenido.
+   ============================================================ */
+.app-shell{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  min-height:100vh;
+}
+
+.main{
+  padding:20px 24px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:12px;
+  margin-bottom:16px;
+  border-bottom:1px dashed var(--line-soft);
+}
+
+.topbar h2{
+  font-size:16px;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:2.2fr 1fr;
+  gap:18px;
+}
+
+.filters-row{
+  display:flex;
+  gap:10px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+}

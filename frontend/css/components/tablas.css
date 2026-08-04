@@ -1,0 +1,36 @@
+/* ============================================================
+   COMPONENTS / TABLAS
+   Usado en: tabla de asistencia y tabla de planilla.
+   ============================================================ */
+table.wf{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
+
+table.wf th{
+  text-align:left;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:var(--text-soft);
+  border-bottom:1.5px solid var(--line);
+  padding:8px 6px;
+}
+
+table.wf td{
+  padding:9px 6px;
+  border-bottom:1px dashed var(--line-soft);
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  min-width:120px;
+}
+
+.field .input{
+  border:1px solid var(--line-soft);
+  height:30px;
+  background:#fff;
+}

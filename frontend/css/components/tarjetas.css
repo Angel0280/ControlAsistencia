@@ -1,0 +1,78 @@
+/* ============================================================
+   COMPONENTS / TARJETAS
+   Usado en: KPIs de planilla, tarjeta de reloj, contenedores.
+   ============================================================ */
+.box{
+  border:1.5px solid var(--line);
+  background:#fff;
+}
+
+.box.soft{
+  border:1px dashed var(--line-soft);
+}
+
+.kpi-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.kpi-card{
+  padding:14px;
+  text-align:left;
+}
+
+.kpi-card .num{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:4px;
+}
+
+/* Tarjeta del reloj / kiosko de marcaje */
+.clock-card{
+  padding:20px;
+  text-align:center;
+}
+
+.clock-time{
+  font-size:34px;
+  font-weight:bold;
+  letter-spacing:1px;
+  margin:6px 0 2px 0;
+}
+
+.clock-date{
+  font-size:12px;
+  color:var(--text-soft);
+  margin-bottom:16px;
+}
+
+.kiosk{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:20px;
+}
+
+.kiosk-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:16px;
+}
+
+.status-list{
+  padding:16px;
+}
+
+.status-list .row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 4px;
+  border-bottom:1px dashed var(--line-soft);
+  font-size:12px;
+}
+
+.status-list .row:last-child{ border-bottom:none; }

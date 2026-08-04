@@ -1,0 +1,37 @@
+/* ============================================================
+   COMPONENTS / BADGES
+   Estados: Presente, Tarde, Falta, Permiso, etc.
+   ============================================================ */
+.pill{
+  font-size:11px;
+  border:1px solid var(--line-soft);
+  padding:4px 10px;
+  color:var(--text-soft);
+}
+
+.tag{
+  font-size:10px;
+  padding:2px 8px;
+  border:1px solid var(--line-soft);
+}
+
+.meta-row{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  font-size:10px;
+  color:var(--text-soft);
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+.meta-chip{
+  border:1px dashed var(--line-soft);
+  padding:4px 8px;
+}
+
+/* Colores por estado (se activan agregando la clase junto con .tag) */
+.tag.presente{ border-color:#2e7d32; color:#2e7d32; }
+.tag.tarde{    border-color:#b8860b; color:#b8860b; }
+.tag.falta{    border-color:#c62828; color:#c62828; }
+.tag.permiso{  border-color:#1565c0; color:#1565c0; }
