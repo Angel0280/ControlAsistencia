@@ -10,7 +10,7 @@ async function generarPlanilla(){
   const quincena = document.getElementById("filtro-quincena").value;
 
   try{
-    const resp = await fetch("/api/planilla/generar", {
+    const resp = await fetch(window.apiUrl("/api/planilla/generar"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mes, anio, quincena })
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function cargarDetalleDeducciones(idEmpleado){
-  const resp = await fetch(`/api/planilla/deducciones/${idEmpleado}`);
+  const resp = await fetch(window.apiUrl(`/api/planilla/deducciones/${idEmpleado}`));
   const data = await resp.json();
   // Aquí se pinta el panel lateral de "Detalle de deducciones"
   console.log("Deducciones de", idEmpleado, data);

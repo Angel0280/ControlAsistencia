@@ -46,3 +46,38 @@
   text-transform:uppercase;
   color:#b3b3b3;
 }
+
+/* Reglas responsivas: en pantallas estrechas el sidebar se convierte
+   en una fila horizontal desplazable para ajustarse al ancho. */
+@media (max-width: 900px){
+  .app-shell{
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar{
+    border-right: none;
+    border-bottom:1px dashed var(--line-soft);
+    display:flex;
+    gap:6px;
+    padding:8px;
+    overflow-x:auto;
+    white-space:nowrap;
+    align-items:center;
+  }
+
+  .sidebar .brand{
+    display:none;
+  }
+
+  .nav-item{
+    display:inline-flex;
+    flex:0 0 auto;
+    margin:0 6px;
+    border-radius:6px;
+    padding:8px 10px;
+  }
+
+  .nav-item .icon{ /* si se usan íconos dentro */
+    margin-right:6px;
+  }
+}

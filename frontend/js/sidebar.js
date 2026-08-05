@@ -7,7 +7,7 @@
 
 const RUTAS_NAV = {
   asistencia: "asistencia-admin.html",
-  empleados:  "empleados.html",
+  empleados:  "empleado.html",
   planilla:   "planilla.html",
   // Vacaciones, Contratos y Reportes quedan pendientes:
   // cuando existan sus páginas, solo se agregan aquí.
@@ -32,4 +32,11 @@ document.addEventListener("includes:listos", () => {
       window.location.href = destino;
     });
   });
+
+  // Marca el item activo según data-page del body
+  const page = document.body.dataset.page;
+  if (page){
+    const activo = document.querySelector(`.nav-item[data-nav="${page}"]`);
+    if (activo) activo.classList.add("active");
+  }
 });

@@ -66,7 +66,7 @@ async function cargarEmpleados(){
   if (busqueda) params.set("q", busqueda);
 
   try{
-    const resp = await fetch(`/api/empleados?${params.toString()}`);
+    const resp = await fetch(window.apiUrl(`/api/empleados?${params.toString()}`));
     if (!resp.ok) throw new Error("Error al obtener empleados");
     const empleados = await resp.json();
     renderizarTablaEmpleados(empleados);
@@ -104,7 +104,7 @@ function renderizarTablaEmpleados(empleados){
 /* ---------- CATÁLOGOS (para los <select> del modal) ---------- */
 
 async function cargarCatalogos(){
-  const resp = await fetch("/api/catalogos"); // { departamentos:[], roles:[], ubicaciones:[] }
+  const resp = await fetch(window.apiUrl("/api/catalogos")); // { departamentos:[], roles:[], ubicaciones:[] }
   const data = await resp.json();
 
   llenarSelect("emp-departamento", data.departamentos, "id_departamento", "nombre");
@@ -132,7 +132,7 @@ async function abrirModalEmpleado(idEmpleado = null){
 
   if (idEmpleado){
     titulo.textContent = "Editar empleado";
-    const resp = await fetch(`/api/empleados/${idEmpleado}`);
+    const resp = await fetch(window.apiUrl(`/api/empleados/${idEmpleado}`));
     const emp = await resp.json();
 
     document.getElementById("emp-id").value = emp.id_empleado;
@@ -170,10 +170,11 @@ async function guardarEmpleado(){
   };
 
   const url = idEmpleado ? `/api/empleados/${idEmpleado}` : "/api/empleados";
+  const fullUrl = window.apiUrl(url);
   const metodo = idEmpleado ? "PUT" : "POST";
 
   try{
-    const resp = await fetch(url, {
+    const resp = await fetch(fullUrl, {
       method: metodo,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -213,7 +214,7 @@ async function confirmarCambioEstado(){
   const nuevoEstado = accion === "baja" ? 0 : 1;
 
   try{
-    const resp = await fetch(`/api/empleados/${id}/estado`, {
+    const resp = await fetch(window.apiUrl(`/api/empleados/${id}/estado`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ estado: nuevoEstado })
