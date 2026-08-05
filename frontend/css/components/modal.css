@@ -1,0 +1,70 @@
+/* ============================================================
+   COMPONENTS / MODAL
+   Modal genérico, reutilizable para cualquier formulario
+   (empleado, contrato, etc.)
+   ============================================================ */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+}
+
+.modal-overlay.open{
+  display:flex;
+}
+
+.modal-box{
+  width:560px;
+  max-width:92vw;
+  max-height:88vh;
+  overflow-y:auto;
+  background:#fff;
+  border:2px solid var(--line);
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 18px;
+  border-bottom:1.5px solid var(--line);
+}
+
+.modal-header h3{
+  font-size:14px;
+}
+
+.modal-close{
+  border:1px solid var(--line-soft);
+  background:#fff;
+  font-size:12px;
+  padding:4px 9px;
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:18px;
+}
+
+.modal-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding:14px 18px;
+  border-top:1px dashed var(--line-soft);
+}
+
+/* Confirmación de baja / reactivación (modal chico) */
+.modal-box.confirm{
+  width:380px;
+}
+
+.confirm-text{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--text);
+}

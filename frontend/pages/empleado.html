@@ -1,72 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Empleados</title>
 
-<link rel="stylesheet" href="../css/base/variables.css">
-<link rel="stylesheet" href="../css/base/reset.css">
-<link rel="stylesheet" href="../css/layout/app-shell.css">
-<link rel="stylesheet" href="../css/layout/sidebar.css">
-<link rel="stylesheet" href="../css/components/botones.css">
-<link rel="stylesheet" href="../css/components/tablas.css">
-<link rel="stylesheet" href="../css/components/badges.css">
-<link rel="stylesheet" href="../css/components/formularios.css">
-<link rel="stylesheet" href="../css/components/modal.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+
+    <link rel="stylesheet" href="../css/base/variables.css">
+    <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/layout/app-shell.css">
+    <link rel="stylesheet" href="../css/layout/sidebar.css">
+    <link rel="stylesheet" href="../css/components/botones.css">
+    <link rel="stylesheet" href="../css/components/tablas.css">
+    <link rel="stylesheet" href="../css/components/badges.css">
+    <link rel="stylesheet" href="../css/components/formularios.css">
+    <link rel="stylesheet" href="../css/components/modal.css">
 </head>
+
 <body data-page="empleados">
 
-<div class="app-shell">
-  <div data-include="components/sidebar.html"></div>
+    <div class="app-shell">
+        <div data-include="components/sidebar.html"></div>
 
-  <div class="main">
-    <div class="topbar">
-      <h2>Empleados</h2>
-      <button id="btn-agregar-empleado" class="btn primary">+ Agregar empleado</button>
+        <div class="main">
+            <div class="topbar">
+                <h2>Empleados</h2>
+                <button id="btn-agregar-empleado" class="btn primary">+ Agregar empleado</button>
+            </div>
+
+            <div class="filters-row">
+                <div class="field" style="min-width:220px;">
+                    <span class="lbl">Buscar</span>
+                    <input id="buscar-empleado" type="text" class="input"
+                        placeholder="Nombre, número de empleado o INSS">
+                </div>
+                <div class="field">
+                    <span class="lbl">Estado</span>
+                    <select id="filtro-estado-empleado" class="input">
+                        <option value="">Todos</option>
+                        <option value="1">Activos</option>
+                        <option value="0">Inactivos</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="box" style="padding:0;">
+                <table class="wf">
+                    <thead>
+                        <tr>
+                            <th>Nro. Empleado</th>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Rol</th>
+                            <th>Ubicación</th>
+                            <th>Salario base</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-empleados-body">
+                        <!-- filas cargadas dinámicamente desde /api/empleados -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="filters-row">
-      <div class="field" style="min-width:220px;">
-        <span class="lbl">Buscar</span>
-        <input id="buscar-empleado" type="text" class="input" placeholder="Nombre, número de empleado o INSS">
-      </div>
-      <div class="field">
-        <span class="lbl">Estado</span>
-        <select id="filtro-estado-empleado" class="input">
-          <option value="">Todos</option>
-          <option value="1">Activos</option>
-          <option value="0">Inactivos</option>
-        </select>
-      </div>
-    </div>
+    <!-- Modales -->
+    <div data-include="components/modal-empleado.html"></div>
+    <div data-include="components/modal-confirmar-baja.html"></div>
 
-    <div class="box" style="padding:0;">
-      <table class="wf">
-        <thead>
-          <tr>
-            <th>Nro. Empleado</th>
-            <th>Nombre</th>
-            <th>Departamento</th>
-            <th>Rol</th>
-            <th>Ubicación</th>
-            <th>Salario base</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tabla-empleados-body">
-          <!-- filas cargadas dinámicamente desde /api/empleados -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+    <script src="../js/incluir-componentes.js"></script>
+    <script src="../js/empleados.js"></script>
+    <script src="../js/sidebar.js"></script>
 
-<!-- Modales -->
-<div data-include="components/modal-empleado.html"></div>
-<div data-include="components/modal-confirmar-baja.html"></div>
-
-<script src="../js/incluir-componentes.js"></script>
-<script src="../js/empleados.js"></script>
 </body>
+
 </html>

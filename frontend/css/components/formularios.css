@@ -1,0 +1,42 @@
+/* ============================================================
+   COMPONENTS / FORMULARIOS
+   Usado en: modal de agregar/editar empleado y filtros generales.
+   ============================================================ */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 16px;
+}
+
+.form-grid .field-full{
+  grid-column:1 / -1;
+}
+
+.field label,
+.field .lbl{
+  display:block;
+}
+
+.field input,
+.field select{
+  width:100%;
+  height:34px;
+  border:1px solid var(--line-soft);
+  background:#fff;
+  font-family:var(--font-base);
+  font-size:12px;
+  padding:0 8px;
+  color:var(--text);
+}
+
+.field input:focus,
+.field select:focus{
+  outline:2px solid var(--focus);
+  outline-offset:1px;
+}
+
+.field-hint{
+  font-size:10px;
+  color:var(--text-soft);
+  margin-top:3px;
+}
