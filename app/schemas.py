@@ -1,8 +1,11 @@
+# pyrefly: ignore [missing-import]
 from datetime import date, datetime
+# pyrefly: ignore [missing-import]
 from decimal import Decimal
+# pyrefly: ignore [missing-import]
 from typing import List, Optional
-
-from pydantic import BaseModel, ConfigDict, Field
+# pyrefly: ignore [missing-import]
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class DepartamentoBase(BaseModel):
@@ -302,3 +305,75 @@ class BitacoraResponse(BitacoraBase):
     Fecha: Optional[datetime] = None
 
     model_config = ConfigDict(from_attributes=True)
+
+
+# --- Módulo de Evaluación de Desempeño ---
+
+class CategoriaEvaluacionBase(BaseModel):
+    Nombre: str = Field(..., max_length=100, description="Nombre de la categoría de evaluación")
+    Peso_Porcentaje: Decimal = Field(..., gt=0, le=100, description="Ponderación en porcentaje (ej: 20.00)")
+
+
+class CategoriaEvaluacionCreate(CategoriaEvaluacionBase):
+    pass
+
+
+class CategoriaEvaluacionResponse(CategoriaEvaluacionBase):
+    ID_Categoria: int
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class EvaluacionChecklistItemCreate(BaseModel):
+    ID_Categoria: int = Field(..., description="ID de la categoría de evaluación")
+    Puntaje: Decimal = Field(..., ge=0, le=100, description="Puntaje obtenido en esta categoría (0 a 100)")
+    Observaciones: Optional[str] = Field(None, max_length=255, description="Observaciones específicas del ítem")
+
+
+class EvaluacionChecklistResponse(BaseModel):
+    ID_Checklist: int
+    ID_Evaluacion: int
+    ID_Categoria: int
+    Puntaje: Decimal
+    Observaciones: Optional[str] = None
+    categoria: Optional[CategoriaEvaluacionResponse] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class EvaluacionCreate(BaseModel):
+    ID_Empleado: int = Field(..., description="ID del empleado evaluado")
+    ID_Evaluador: int = Field(..., description="ID del empleado evaluador")
+    Fecha_Evaluacion: Optional[date] = Field(default_factory=date.today, description="Fecha de la evaluación")
+    Periodo_Inicio: date = Field(..., description="Fecha de inicio del periodo a evaluar")
+    Periodo_Fin: date = Field(..., description="Fecha de fin del periodo a evaluar")
+    Comentarios_Generales: Optional[str] = Field(None, max_length=500, description="Comentarios generales de la evaluación")
+    checklist: List[EvaluacionChecklistItemCreate] = Field(..., min_length=1, description="Array con los ítems del checklist")
+
+    @model_validator(mode="after")
+    def validar_periodo_semestral(self):
+        if self.Periodo_Fin <= self.Periodo_Inicio:
+            raise ValueError("La fecha de fin del periodo debe ser posterior a la fecha de inicio.")
+        
+        dias_diferencia = (self.Periodo_Fin - self.Periodo_Inicio).days
+        if not (170 <= dias_diferencia <= 190):
+            raise ValueError(
+                f"El periodo de evaluación debe ser de aproximadamente 6 meses (semestral, 170-190 días). "
+                f"Días del periodo proporcionado: {dias_diferencia}."
+            )
+        return self
+
+
+class EvaluacionResponse(BaseModel):
+    ID_Evaluacion: int
+    ID_Empleado: int
+    ID_Evaluador: int
+    Fecha_Evaluacion: date
+    Periodo_Inicio: date
+    Periodo_Fin: date
+    Puntuacion_Final: Decimal
+    Comentarios_Generales: Optional[str] = None
+    checklist_items: List[EvaluacionChecklistResponse] = Field(default_factory=list)
+
+    model_config = ConfigDict(from_attributes=True)
+

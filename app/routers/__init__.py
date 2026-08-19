@@ -9,6 +9,7 @@ from .asistencia import router as asistencia_router
 from .vacaciones import router as vacaciones_router
 from .planilla import router as planilla_router
 from .bitacora import router as bitacora_router
+from .evaluaciones import router as evaluaciones_router
 
 __all__ = [
     "departamentos_router",
@@ -22,4 +23,6 @@ __all__ = [
     "vacaciones_router",
     "planilla_router",
     "bitacora_router",
+    "evaluaciones_router",
 ]
+

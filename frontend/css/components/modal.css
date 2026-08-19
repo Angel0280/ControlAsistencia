@@ -1,70 +1,112 @@
 /* ============================================================
    COMPONENTS / MODAL
-   Modal genérico, reutilizable para cualquier formulario
-   (empleado, contrato, etc.)
+   Modal con backdrop blur y animaciones de entrada/salida.
    ============================================================ */
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.35);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:50;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--space-4);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
-.modal-overlay.open{
-  display:flex;
+.modal-overlay.open {
+  display: flex;
+  opacity: 1;
 }
 
-.modal-box{
-  width:560px;
-  max-width:92vw;
-  max-height:88vh;
-  overflow-y:auto;
-  background:#fff;
-  border:2px solid var(--line);
+/* ── Caja del modal ── */
+.modal-box {
+  width: 560px;
+  max-width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  animation: modalSlideIn var(--transition-normal) ease both;
 }
 
-.modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 18px;
-  border-bottom:1.5px solid var(--line);
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.modal-header h3{
-  font-size:14px;
+/* ── Header ── */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.modal-close{
-  border:1px solid var(--line-soft);
-  background:#fff;
-  font-size:12px;
-  padding:4px 9px;
-  cursor:pointer;
+.modal-header h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
 }
 
-.modal-body{
-  padding:18px;
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.modal-footer{
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-  padding:14px 18px;
-  border-top:1px dashed var(--line-soft);
+.modal-close:hover {
+  background: var(--danger-muted);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.3);
 }
 
-/* Confirmación de baja / reactivación (modal chico) */
-.modal-box.confirm{
-  width:380px;
+/* ── Body ── */
+.modal-body {
+  padding: var(--space-5);
 }
 
-.confirm-text{
-  font-size:13px;
-  line-height:1.5;
-  color:var(--text);
+/* ── Footer ── */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Modal chico (confirmación) ── */
+.modal-box.confirm {
+  width: 420px;
+}
+
+.confirm-text {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.confirm-text b {
+  color: var(--text-primary);
 }

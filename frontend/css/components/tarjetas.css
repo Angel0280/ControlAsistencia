@@ -1,78 +1,204 @@
 /* ============================================================
    COMPONENTS / TARJETAS
-   Usado en: KPIs de planilla, tarjeta de reloj, contenedores.
+   Cards (KPIs, reloj, contenedores) con efecto glass.
    ============================================================ */
-.box{
-  border:1.5px solid var(--line);
-  background:#fff;
+
+.box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
 }
 
-.box.soft{
-  border:1px dashed var(--line-soft);
+.box:hover {
+  border-color: var(--border-strong);
 }
 
-.kpi-row{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:18px;
+.box.soft {
+  border-style: dashed;
+  background: var(--bg-elevated);
 }
 
-.kpi-card{
-  padding:14px;
-  text-align:left;
+/* ── KPI Row ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
-.kpi-card .num{
-  font-size:20px;
-  font-weight:bold;
-  margin-top:4px;
+.kpi-card {
+  padding: var(--space-5);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Tarjeta del reloj / kiosko de marcaje */
-.clock-card{
-  padding:20px;
-  text-align:center;
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--accent-muted);
+  border-radius: 0 0 0 100%;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
-.clock-time{
-  font-size:34px;
-  font-weight:bold;
-  letter-spacing:1px;
-  margin:6px 0 2px 0;
+.kpi-card:hover::after {
+  opacity: 1;
 }
 
-.clock-date{
-  font-size:12px;
-  color:var(--text-soft);
-  margin-bottom:16px;
+.kpi-card .num {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-top: var(--space-2);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
-.kiosk{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-bottom:20px;
+.kpi-card .kpi-icon {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-1);
 }
 
-.kiosk-actions{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top:16px;
+/* ── Tarjeta de reloj ── */
+.clock-card {
+  padding: var(--space-6);
+  text-align: center;
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
 }
 
-.status-list{
-  padding:16px;
+.clock-time {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: var(--space-2) 0;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
-.status-list .row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:8px 4px;
-  border-bottom:1px dashed var(--line-soft);
-  font-size:12px;
+.clock-date {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
 }
 
-.status-list .row:last-child{ border-bottom:none; }
+/* ── Kiosk de marcaje ── */
+.kiosk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.kiosk-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+/* ── Lista de estado (historial) ── */
+.status-list {
+  padding: var(--space-4);
+}
+
+.status-list .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
+}
+
+.status-list .row:hover {
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+}
+
+.status-list .row:last-child {
+  border-bottom: none;
+}
+
+/* ── Vista "En construcción" ── */
+.stub-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  gap: var(--space-4);
+  color: var(--text-muted);
+}
+
+.stub-view .stub-icon {
+  font-size: 4rem;
+  opacity: 0.3;
+}
+
+.stub-view h2 {
+  color: var(--text-secondary);
+  font-size: var(--text-xl);
+}
+
+.stub-view p {
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+/* ── Dashboard cards ── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.dashboard-card {
+  padding: var(--space-5);
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.dashboard-card .card-icon {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.dashboard-card h3 {
+  font-size: var(--text-base);
+  margin-bottom: var(--space-1);
+}
+
+.dashboard-card p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kiosk {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
+}

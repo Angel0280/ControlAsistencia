@@ -1,19 +1,93 @@
 /* ============================================================
-   BASE / VARIABLES
-   Tokens de color y tipografía usados en todo el sistema.
-   Ajustar aquí = cambia todo el sitio.
+   BASE / VARIABLES — Design Tokens
+   Sistema de tokens para toda la UI. Cambiar aquí = cambia todo.
+   Tema: Dark mode premium con acentos índigo/violeta.
    ============================================================ */
-:root{
-  --bg:#f2f2f2;
-  --panel:#ffffff;
-  --line:#9a9a9a;
-  --line-soft:#c7c7c7;
-  --text:#2b2b2b;
-  --text-soft:#6f6f6f;
-  --focus:#1f6feb;
-  --block:#e6e6e6;
 
-  --font-base: "Helvetica Neue", Arial, sans-serif;
+/* Google Font — se carga en index.html */
+:root {
+  /* ── Colores de fondo ── */
+  --bg-base:        #0f1117;
+  --bg-surface:     #1a1d27;
+  --bg-elevated:    #232734;
+  --bg-hover:       #2a2f3e;
+  --bg-active:      #323848;
 
-  --radius-0: 0px; /* el sistema usa esquinas rectas, no border-radius */
+  /* ── Colores de borde ── */
+  --border-default: #2e3348;
+  --border-subtle:  #252a3a;
+  --border-strong:  #3d4460;
+
+  /* ── Colores de texto ── */
+  --text-primary:   #e8eaf0;
+  --text-secondary: #9498ab;
+  --text-muted:     #6b7089;
+  --text-inverse:   #0f1117;
+
+  /* ── Acento principal (índigo) ── */
+  --accent:         #6366f1;
+  --accent-hover:   #818cf8;
+  --accent-muted:   rgba(99, 102, 241, 0.15);
+  --accent-text:    #a5b4fc;
+
+  /* ── Colores semánticos ── */
+  --success:        #22c55e;
+  --success-muted:  rgba(34, 197, 94, 0.15);
+  --warning:        #f59e0b;
+  --warning-muted:  rgba(245, 158, 11, 0.15);
+  --danger:         #ef4444;
+  --danger-muted:   rgba(239, 68, 68, 0.15);
+  --info:           #3b82f6;
+  --info-muted:     rgba(59, 130, 246, 0.15);
+
+  /* ── Tipografía ── */
+  --font-sans:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.6875rem;   /* 11px */
+  --text-sm:   0.75rem;     /* 12px */
+  --text-base: 0.875rem;    /* 14px */
+  --text-lg:   1rem;        /* 16px */
+  --text-xl:   1.25rem;     /* 20px */
+  --text-2xl:  1.5rem;      /* 24px */
+  --text-3xl:  2rem;        /* 32px */
+
+  /* ── Espaciado ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ── Bordes redondeados ── */
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-full: 9999px;
+
+  /* ── Sombras ── */
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-xl:  0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.25);
+
+  /* ── Transiciones ── */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Sidebar ── */
+  --sidebar-width:     260px;
+  --sidebar-collapsed:  64px;
+
+  /* ── Z-index ── */
+  --z-sidebar:   100;
+  --z-header:    200;
+  --z-modal:     500;
+  --z-toast:     900;
 }

@@ -1,16 +1,25 @@
-/* Configuración del frontend para llamadas al backend.
- * Por defecto API_BASE queda vacío (''), lo que hace que las
- * llamadas fetch('/api/...') vayan al mismo origen donde se sirve
- * el frontend. Si el backend corre en otro host/puerto (por ejemplo
- * http://127.0.0.1:8000), establecer API_BASE = 'http://127.0.0.1:8000'
- * Ejemplo: window.API_BASE = 'http://127.0.0.1:8000';
+/* ============================================================
+   CONFIG.JS
+   Configuraciones globales del entorno
+   ============================================================ */
+
+// 1. Define la URL base de tu backend (FastAPI)
+// Cambia el puerto 8000 si tu servidor de Python usa uno diferente
+const BASE_URL = 'http://localhost:8000'; 
+
+/**
+ * Construye y retorna la URL completa para el fetch.
+ * Evita problemas de barras dobles (//) al concatenar.
+ * 
+ * @param {string} path - Ruta relativa (ej: '/api/empleados' o 'api/empleados')
+ * @returns {string} - URL absoluta (ej: 'http://localhost:8000/api/empleados')
  */
+export const apiUrl = (path) => {
+    // Validar que el path no sea nulo o indefinido
+    if (!path) return BASE_URL;
 
-window.API_BASE = ""; // valor por defecto: mismo origen
-
-// Helper útil: devuelve la URL completa para un endpoint relativo
-window.apiUrl = function(path){
-  // evita doble barra si API_BASE termina en / y path empieza en /
-  const base = (window.API_BASE || '').replace(/\/+$/,'');
-  return base + path;
+    // Aseguramos que el path siempre empiece con una barra "/"
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    
+    return `${BASE_URL}${cleanPath}`;
 };
