@@ -1,9 +1,4 @@
-/* ============================================================
-   VIEWS / ASISTENCIA.JS
-   Vista del módulo de Control de Asistencia.
-   - Kiosko de marcaje con reloj en vivo.
-   - Tabla administrativa de asistencia del día.
-   ============================================================ */
+
 
 import { api } from '../api.js';
 import { toast } from '../toast.js';
@@ -12,9 +7,6 @@ import { getCurrentTime, getCurrentDate, formatTime, escapeHtml } from '../utils
 let container = null;
 let clockInterval = null;
 
-/* ============================================================
-   RENDER
-   ============================================================ */
 
 export async function render(el) {
   container = el;
@@ -73,7 +65,7 @@ export async function render(el) {
         <button id="btn-filtrar-asistencia" class="btn ghost">Filtrar</button>
       </div>
 
-      <div class="box" style="padding:0; overflow:auto;">
+      <div class="box table-scroll-wrapper" style="padding:0;">
         <table class="wf">
           <thead>
             <tr>
@@ -150,7 +142,6 @@ async function marcarAsistencia(tipo) {
       estadoEl.textContent = `Estado del día: ${data.estado}`;
     }
 
-    // Refrescar historial y tabla
     await Promise.all([cargarHistorial(), cargarTablaAsistencia()]);
   } catch (err) {
     toast.error(err.message || 'No se pudo registrar el marcaje');

@@ -12,7 +12,7 @@
 .main-area {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   margin-left: var(--sidebar-width);
 }
@@ -92,9 +92,19 @@
 /* ── Contenido principal ── */
 .main-content {
   flex: 1;
+  min-height: 0;
   padding: var(--space-6);
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Contenedor scrollable de tabla ── */
+.table-scroll-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
 }
 
 /* ── Topbar de cada vista ── */

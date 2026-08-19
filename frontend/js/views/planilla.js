@@ -80,7 +80,7 @@ export async function render(el) {
 
       <!-- Tabla + Panel de deducciones -->
       <div class="two-col">
-        <div class="box" style="padding:0; overflow:auto;">
+        <div class="box table-scroll-wrapper" style="padding:0;">
           <table class="wf">
             <thead>
               <tr>

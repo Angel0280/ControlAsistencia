@@ -114,9 +114,16 @@ async function cargarCatalogos(){
 
 function llenarSelect(selectId, opciones, campoValor, campoTexto){
   const select = document.getElementById(selectId);
-  if (!select) return;
+  if (!select || !Array.isArray(opciones)) return;
+  const getValue = (obj, field) => {
+    if (!obj || !field) return "";
+    if (obj[field] !== undefined) return obj[field];
+    const lower = field.toLowerCase();
+    const match = Object.keys(obj).find(k => k.toLowerCase() === lower);
+    return match ? obj[match] : "";
+  };
   select.innerHTML = opciones
-    .map(op => `<option value="${op[campoValor]}">${op[campoTexto]}</option>`)
+    .map(op => `<option value="${getValue(op, campoValor)}">${getValue(op, campoTexto)}</option>`)
     .join("");
 }
 

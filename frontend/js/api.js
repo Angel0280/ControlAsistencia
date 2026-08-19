@@ -19,7 +19,6 @@ import { toast } from './toast.js';
  * @throws {Error}          - Si la respuesta no es ok
  */
 
-const BASE_URL = 'http://localhost:8000';
 async function request(path, options = {}) {
   const url = apiUrl(path);
 

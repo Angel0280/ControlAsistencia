@@ -1,22 +1,19 @@
-/* ============================================================
-   VIEWS / DASHBOARD.JS
-   Vista principal — Panel de acceso rápido a módulos.
-   ============================================================ */
+
 
 import { navigate } from '../router.js';
 
 const MODULES = [
-  { icon: '👥', title: 'Empleados',         desc: 'Gestión de personal, altas y bajas',          route: '/empleados' },
-  { icon: '⏱️', title: 'Asistencia',         desc: 'Marcaje de entradas y salidas',               route: '/asistencia' },
-  { icon: '🌴', title: 'Vacaciones',         desc: 'Solicitudes y días disponibles',               route: '/vacaciones' },
-  { icon: '📄', title: 'Contratos',          desc: 'Registro y gestión de contratos',              route: '/contratos' },
-  { icon: '💰', title: 'Planilla',           desc: 'Generación de nómina y deducciones',           route: '/planilla' },
-  { icon: '📋', title: 'Evaluaciones',       desc: 'Evaluación semestral de desempeño',            route: '/evaluaciones' },
-  { icon: '🏢', title: 'Departamentos',      desc: 'Catálogo de departamentos',                    route: '/departamentos' },
-  { icon: '📍', title: 'Ubicaciones',        desc: 'Catálogo de ubicaciones físicas',              route: '/ubicaciones' },
-  { icon: '🔑', title: 'Roles',              desc: 'Catálogo de roles del sistema',                route: '/roles' },
-  { icon: '🛡️', title: 'Permisos',           desc: 'Catálogo de permisos por módulo',              route: '/permisos' },
-  { icon: '📝', title: 'Tipos de Deducción', desc: 'Catálogo de deducciones de planilla',          route: '/tipos-deduccion' },
+  { icon: '👥', title: 'Empleados', desc: 'Gestión de personal, altas y bajas', route: '/empleados' },
+  { icon: '⏱️', title: 'Asistencia', desc: 'Marcaje de entradas y salidas', route: '/asistencia' },
+  { icon: '🌴', title: 'Vacaciones', desc: 'Solicitudes y días disponibles', route: '/vacaciones' },
+  { icon: '📄', title: 'Contratos', desc: 'Registro y gestión de contratos', route: '/contratos' },
+  { icon: '💰', title: 'Planilla', desc: 'Generación de nómina y deducciones', route: '/planilla' },
+  { icon: '📋', title: 'Evaluaciones', desc: 'Evaluación semestral de desempeño', route: '/evaluaciones' },
+  { icon: '🏢', title: 'Departamentos', desc: 'Catálogo de departamentos', route: '/departamentos' },
+  { icon: '📍', title: 'Ubicaciones', desc: 'Catálogo de ubicaciones físicas', route: '/ubicaciones' },
+  { icon: '🔑', title: 'Roles', desc: 'Catálogo de roles del sistema', route: '/roles' },
+  { icon: '🛡️', title: 'Permisos', desc: 'Catálogo de permisos por módulo', route: '/permisos' },
+  { icon: '📝', title: 'Tipos de Deducción', desc: 'Catálogo de deducciones de planilla', route: '/tipos-deduccion' },
 ];
 
 /**
@@ -43,18 +40,14 @@ export function render(container) {
     </div>
   `;
 
-  // Delegación de clics en las cards
+
   container.addEventListener('click', handleCardClick);
 }
 
-/**
- * Limpieza al salir de la vista.
- */
+
 export function destroy() {
-  // No hay timers ni listeners globales que limpiar
 }
 
-/* ── Handlers internos ── */
 
 function handleCardClick(e) {
   const card = e.target.closest('.dashboard-card');

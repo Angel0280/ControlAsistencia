@@ -1,7 +1,4 @@
-/* ============================================================
-   COMPONENTS / SIDEBAR.JS
-   Genera el sidebar dinámicamente y maneja la interacción.
-   ============================================================ */
+
 
 import { navigate, getCurrentRoute } from '../router.js';
 
@@ -13,28 +10,28 @@ const NAV_STRUCTURE = [
   {
     group: 'Principal',
     items: [
-      { key: 'dashboard',    label: 'Dashboard',       icon: '📊', route: '#/dashboard' },
-      { key: 'empleados',    label: 'Empleados',       icon: '👥', route: '#/empleados' },
-      { key: 'asistencia',   label: 'Asistencia',      icon: '⏱️', route: '#/asistencia' },
-      { key: 'vacaciones',   label: 'Vacaciones',      icon: '🌴', route: '#/vacaciones' },
-      { key: 'contratos',    label: 'Contratos',       icon: '📄', route: '#/contratos' },
+      { key: 'dashboard', label: 'Dashboard', icon: '📊', route: '#/dashboard' },
+      { key: 'empleados', label: 'Empleados', icon: '👥', route: '#/empleados' },
+      { key: 'asistencia', label: 'Asistencia', icon: '⏱️', route: '#/asistencia' },
+      { key: 'vacaciones', label: 'Vacaciones', icon: '🌴', route: '#/vacaciones' },
+      { key: 'contratos', label: 'Contratos', icon: '📄', route: '#/contratos' },
     ],
   },
   {
     group: 'Nómina',
     items: [
-      { key: 'planilla',     label: 'Planilla',        icon: '💰', route: '#/planilla' },
-      { key: 'evaluaciones', label: 'Evaluaciones',    icon: '📋', route: '#/evaluaciones' },
+      { key: 'planilla', label: 'Planilla', icon: '💰', route: '#/planilla' },
+      { key: 'evaluaciones', label: 'Evaluaciones', icon: '📋', route: '#/evaluaciones' },
     ],
   },
   {
     group: 'Catálogos',
     items: [
-      { key: 'departamentos',   label: 'Departamentos',    icon: '🏢', route: '#/departamentos' },
-      { key: 'ubicaciones',      label: 'Ubicaciones',      icon: '📍', route: '#/ubicaciones' },
-      { key: 'roles',            label: 'Roles',            icon: '🔑', route: '#/roles' },
-      { key: 'permisos',         label: 'Permisos',         icon: '🛡️', route: '#/permisos' },
-      { key: 'tipos-deduccion',  label: 'Tipos Deducción',  icon: '📝', route: '#/tipos-deduccion' },
+      { key: 'departamentos', label: 'Departamentos', icon: '🏢', route: '#/departamentos' },
+      { key: 'ubicaciones', label: 'Ubicaciones', icon: '📍', route: '#/ubicaciones' },
+      { key: 'roles', label: 'Roles', icon: '🔑', route: '#/roles' },
+      { key: 'permisos', label: 'Permisos', icon: '🛡️', route: '#/permisos' },
+      { key: 'tipos-deduccion', label: 'Tipos Deducción', icon: '📝', route: '#/tipos-deduccion' },
     ],
   },
 ];
@@ -50,7 +47,10 @@ export function renderSidebar() {
 
   let html = `
     <div class="sidebar-brand">
-      <img src="assets/walmartlogo.webp" alt="Logo">
+      <div class="brand-logo">
+        <span class="brand-icon">🏪</span>
+        <span class="brand-title">Pulpería Don Juan</span>
+      </div>
       <div class="app-name">Control de Asistencia</div>
     </div>
     <nav class="sidebar-nav">

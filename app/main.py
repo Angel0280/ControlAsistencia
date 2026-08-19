@@ -1,8 +1,5 @@
-# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, Depends, HTTPException
-# pyrefly: ignore [missing-import]
 from sqlalchemy import text
-# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import Session
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,6 +12,7 @@ from app.routers import (
     empleados_router,
     permisos_router,
     planilla_router,
+    planilla_singular_router,
     roles_router,
     tipos_deduccion_router,
     ubicaciones_router,
@@ -22,6 +20,8 @@ from app.routers import (
     asistencia_router,
     evaluaciones_router,
 )
+
+from app import models, schemas
 
 app = FastAPI(
     title="API de Asistencia",
@@ -32,17 +32,20 @@ app = FastAPI(
 origenes_permitidos = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
-    # "http://localhost:3000", # Descomenta si usas otro puerto
-    # "*",                     # Permite TODOS los orígenes (solo recomendado para desarrollo local)
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "*",
 ]
 
 # 2. Agregar el Middleware a la aplicación
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origenes_permitidos, # Orígenes que tienen permiso
-    allow_credentials=True,            # Permite el envío de cookies/credenciales
-    allow_methods=["*"],               # Permite todos los métodos (GET, POST, PUT, DELETE)
-    allow_headers=["*"],               # Permite todos los headers
+    allow_origins=origenes_permitidos,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
@@ -57,6 +60,17 @@ def verificar_estado(db: Session = Depends(get_db)):
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 
+@app.get("/api/catalogos", response_model=schemas.CatalogosResponse)
+def obtener_catalogos(db: Session = Depends(get_db)):
+    departamentos = db.query(models.Departamento).filter(models.Departamento.Estado == True).all()
+    roles = db.query(models.Rol).filter(models.Rol.Estado == True).all()
+    ubicaciones = db.query(models.Ubicacion).filter(models.Ubicacion.Estado == True).all()
+    return {
+        "departamentos": departamentos,
+        "roles": roles,
+        "ubicaciones": ubicaciones,
+    }
+
 app.include_router(departamentos_router)
 app.include_router(ubicaciones_router)
 app.include_router(roles_router)
@@ -67,6 +81,7 @@ app.include_router(contratos_router)
 app.include_router(asistencia_router)
 app.include_router(vacaciones_router)
 app.include_router(planilla_router)
+app.include_router(planilla_singular_router)
 app.include_router(bitacora_router)
 app.include_router(evaluaciones_router)
 

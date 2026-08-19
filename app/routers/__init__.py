@@ -7,7 +7,7 @@ from .tipos_deduccion import router as tipos_deduccion_router
 from .contratos import router as contratos_router
 from .asistencia import router as asistencia_router
 from .vacaciones import router as vacaciones_router
-from .planilla import router as planilla_router
+from .planilla import router as planilla_router, router_singular as planilla_singular_router
 from .bitacora import router as bitacora_router
 from .evaluaciones import router as evaluaciones_router
 
@@ -22,7 +22,7 @@ __all__ = [
     "asistencia_router",
     "vacaciones_router",
     "planilla_router",
+    "planilla_singular_router",
     "bitacora_router",
     "evaluaciones_router",
 ]
-

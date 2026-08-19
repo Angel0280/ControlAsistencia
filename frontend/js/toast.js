@@ -50,15 +50,26 @@ function show(message, type = 'info', duration) {
 
 /**
  * Remueve un toast con animación de salida.
+ * Usa animationend + setTimeout como fallback para garantizar
+ * que siempre se elimine del DOM.
  * @param {HTMLElement} toastEl
  */
 function removeToast(toastEl) {
   if (!toastEl || toastEl.classList.contains('removing')) return;
 
   toastEl.classList.add('removing');
-  toastEl.addEventListener('animationend', () => {
-    toastEl.remove();
-  });
+
+  const doRemove = () => {
+    if (toastEl.parentNode) {
+      toastEl.remove();
+    }
+  };
+
+  // Primario: al terminar la animación de salida
+  toastEl.addEventListener('animationend', doRemove, { once: true });
+
+  // Fallback: si animationend no se dispara, forzar remoción a los 300ms
+  setTimeout(doRemove, 300);
 }
 
 /**

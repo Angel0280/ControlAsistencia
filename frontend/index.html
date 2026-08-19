@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +8,21 @@
 
   <title>RRHH · Control de Asistencia</title>
 
-  <!-- Google Fonts: Inter -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS único -->
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <!-- ============================================================
-       APP SHELL
-       Sidebar + Header + Main content (SPA container)
-       ============================================================ -->
 
   <div class="app-shell">
 
-    <!-- Overlay para cerrar sidebar en mobile -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <!-- Sidebar: generado dinámicamente por js/components/sidebar.js -->
     <aside class="sidebar" id="sidebar"></aside>
 
     <!-- Área principal -->
@@ -48,9 +43,8 @@
         </div>
       </header>
 
-      <!-- Contenedor principal donde el Router inyecta las vistas -->
       <main class="main-content" id="app-content">
-        <!-- Las vistas se cargan dinámicamente aquí -->
+
         <div class="loading-screen">
           <div class="spinner lg"></div>
           <span>Cargando...</span>
@@ -60,13 +54,10 @@
     </div>
   </div>
 
-  <!-- Contenedor de notificaciones Toast -->
   <div class="toast-container" id="toast-container"></div>
 
-  <!-- ============================================================
-       JAVASCRIPT — ES Modules
-       ============================================================ -->
   <script type="module" src="js/app.js"></script>
 
 </body>
+
 </html>

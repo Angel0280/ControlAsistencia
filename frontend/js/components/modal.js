@@ -13,7 +13,6 @@ export function openModal(modalId) {
 
   modal.classList.add('open');
 
-  // Cerrar con Escape
   const handleEsc = (e) => {
     if (e.key === 'Escape') {
       closeModal(modalId);

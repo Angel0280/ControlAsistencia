@@ -86,8 +86,20 @@ export function fillSelect(selectId, items, valueField, textField, placeholder =
     html = `<option value="">${escapeHtml(placeholder)}</option>`;
   }
 
+  const getValue = (obj, field) => {
+    if (!obj || !field) return '';
+    if (obj[field] !== undefined) return obj[field];
+    const lower = field.toLowerCase();
+    const match = Object.keys(obj).find(k => k.toLowerCase() === lower);
+    return match ? obj[match] : '';
+  };
+
   html += items
-    .map(item => `<option value="${item[valueField]}">${escapeHtml(String(item[textField]))}</option>`)
+    .map(item => {
+      const val = getValue(item, valueField);
+      const txt = getValue(item, textField);
+      return `<option value="${val}">${escapeHtml(String(txt))}</option>`;
+    })
     .join('');
 
   select.innerHTML = html;

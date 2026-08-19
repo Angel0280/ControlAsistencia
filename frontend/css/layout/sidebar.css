@@ -26,17 +26,31 @@
   flex-shrink: 0;
 }
 
-.sidebar-brand img {
-  width: 100%;
-  max-width: 160px;
-  height: auto;
-  display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
-  transition: opacity var(--transition-fast);
+.sidebar-brand .brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
-.sidebar-brand:hover img {
-  opacity: 1;
+
+.sidebar-brand .brand-icon {
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--accent-muted);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  flex-shrink: 0;
+}
+
+.sidebar-brand .brand-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+  line-height: 1.2;
 }
 
 .sidebar-brand .app-name {

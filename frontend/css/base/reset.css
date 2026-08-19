@@ -129,4 +129,8 @@ a:hover { color: var(--accent-hover); }
 
 .animate-fade-in {
   animation: fadeIn var(--transition-normal) both;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
