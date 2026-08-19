@@ -1,0 +1,72 @@
+<!--
+  COMPONENTE: MODAL EMPLEADO
+  Se inyecta en pages/empleados.html con
+  data-include="components/modal-empleado.html"
+
+  Sirve tanto para "Agregar" como para "Editar":
+  - js/empleados.js decide el modo y precarga los campos si es edición.
+  - Los <select> de Departamento/Rol/Ubicación se llenan dinámicamente
+    desde /api/catalogos (ver js/empleados.js).
+-->
+<div class="modal-overlay" id="modal-empleado">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-empleado-titulo">Agregar empleado</h3>
+      <button class="modal-close" data-close-modal="modal-empleado">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <form id="form-empleado">
+        <input type="hidden" id="emp-id" name="id_empleado">
+
+        <div class="form-grid">
+          <div class="field">
+            <span class="lbl">Número de empleado</span>
+            <input type="text" id="emp-numero" name="numero_empleado" placeholder="EMP-0011" required>
+          </div>
+          <div class="field">
+            <span class="lbl">INSS</span>
+            <input type="text" id="emp-inss" name="inss" placeholder="INSS-0011" required>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Nombre</span>
+            <input type="text" id="emp-nombre" name="nombre" required>
+          </div>
+          <div class="field">
+            <span class="lbl">Apellido</span>
+            <input type="text" id="emp-apellido" name="apellido" required>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Fecha de contratación</span>
+            <input type="date" id="emp-fecha" name="fecha_contratacion" required>
+          </div>
+          <div class="field">
+            <span class="lbl">Salario base (C$)</span>
+            <input type="number" id="emp-salario" name="salario_base" step="0.01" min="0" required>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Departamento</span>
+            <select id="emp-departamento" name="id_departamento" required></select>
+          </div>
+          <div class="field">
+            <span class="lbl">Rol</span>
+            <select id="emp-rol" name="id_rol" required></select>
+          </div>
+
+          <div class="field field-full">
+            <span class="lbl">Ubicación</span>
+            <select id="emp-ubicacion" name="id_ubicacion" required></select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn ghost" data-close-modal="modal-empleado">Cancelar</button>
+      <button class="btn primary" id="btn-guardar-empleado">Guardar empleado</button>
+    </div>
+  </div>
+</div>

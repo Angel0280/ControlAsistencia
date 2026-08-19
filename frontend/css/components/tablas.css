@@ -1,36 +1,76 @@
 /* ============================================================
    COMPONENTS / TABLAS
-   Usado en: tabla de asistencia y tabla de planilla.
+   Tablas con hover row, zebra striping y acciones inline.
    ============================================================ */
-table.wf{
-  width:100%;
-  border-collapse:collapse;
-  font-size:12px;
+
+table.wf {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
 }
 
-table.wf th{
-  text-align:left;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-  color:var(--text-soft);
-  border-bottom:1.5px solid var(--line);
-  padding:8px 6px;
+table.wf th {
+  text-align: left;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-default);
+  padding: var(--space-3) var(--space-3);
+  background: var(--bg-elevated);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-table.wf td{
-  padding:9px 6px;
-  border-bottom:1px dashed var(--line-soft);
+table.wf td {
+  padding: var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
 }
 
-.field{
-  display:flex;
-  flex-direction:column;
-  min-width:120px;
+/* Zebra striping */
+table.wf tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.015);
 }
 
-.field .input{
-  border:1px solid var(--line-soft);
-  height:30px;
-  background:#fff;
+/* Hover row */
+table.wf tbody tr:hover td {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Celda de acciones */
+.acciones-cell {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* ── Tabla vacía ── */
+.tabla-vacia {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--text-muted);
+}
+
+.tabla-vacia .icono {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-3);
+  opacity: 0.4;
+}
+
+.tabla-vacia p {
+  font-size: var(--text-sm);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  table.wf {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

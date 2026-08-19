@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from sqlalchemy import (
     Column,
     Integer,
@@ -12,6 +13,7 @@ from sqlalchemy import (
     UniqueConstraint,
     text,
 )
+# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import relationship
 
 from .database import Base
@@ -116,6 +118,17 @@ class Empleado(Base):
     vacaciones = relationship("Vacacion", back_populates="empleado")
     planillas = relationship("Planilla", back_populates="empleado")
     bitacoras = relationship("Bitacora", back_populates="empleado")
+    evaluaciones_recibidas = relationship(
+        "Evaluacion",
+        foreign_keys="[Evaluacion.ID_Empleado]",
+        back_populates="empleado",
+    )
+    evaluaciones_realizadas = relationship(
+        "Evaluacion",
+        foreign_keys="[Evaluacion.ID_Evaluador]",
+        back_populates="evaluador",
+    )
+
 
 
 class Contrato(Base):
@@ -214,3 +227,56 @@ class Bitacora(Base):
     Fecha = Column(DateTime, server_default=text("GETDATE()"))
 
     empleado = relationship("Empleado", back_populates="bitacoras")
+
+
+class CategoriaEvaluacion(Base):
+    __tablename__ = "CategoriasEvaluacion"
+
+    ID_Categoria = Column(Integer, primary_key=True, index=True)
+    Nombre = Column(String(100), nullable=False)
+    Peso_Porcentaje = Column(Numeric(5, 2), nullable=False)
+
+    checklist_items = relationship("EvaluacionChecklist", back_populates="categoria")
+
+
+class Evaluacion(Base):
+    __tablename__ = "Evaluaciones"
+
+    ID_Evaluacion = Column(Integer, primary_key=True, index=True)
+    ID_Empleado = Column(Integer, ForeignKey("Empleados.ID_Empleado"), nullable=False)
+    ID_Evaluador = Column(Integer, ForeignKey("Empleados.ID_Empleado"), nullable=False)
+    Fecha_Evaluacion = Column(Date, nullable=False)
+    Periodo_Inicio = Column(Date, nullable=False)
+    Periodo_Fin = Column(Date, nullable=False)
+    Puntuacion_Final = Column(Numeric(5, 2), nullable=False)
+    Comentarios_Generales = Column(String(500), nullable=True)
+
+    empleado = relationship(
+        "Empleado",
+        foreign_keys=[ID_Empleado],
+        back_populates="evaluaciones_recibidas",
+    )
+    evaluador = relationship(
+        "Empleado",
+        foreign_keys=[ID_Evaluador],
+        back_populates="evaluaciones_realizadas",
+    )
+    checklist_items = relationship(
+        "EvaluacionChecklist",
+        back_populates="evaluacion",
+        cascade="all, delete-orphan",
+    )
+
+
+class EvaluacionChecklist(Base):
+    __tablename__ = "Evaluacion_Checklist"
+
+    ID_Checklist = Column(Integer, primary_key=True, index=True)
+    ID_Evaluacion = Column(Integer, ForeignKey("Evaluaciones.ID_Evaluacion"), nullable=False)
+    ID_Categoria = Column(Integer, ForeignKey("CategoriasEvaluacion.ID_Categoria"), nullable=False)
+    Puntaje = Column(Numeric(5, 2), nullable=False)
+    Observaciones = Column(String(255), nullable=True)
+
+    evaluacion = relationship("Evaluacion", back_populates="checklist_items")
+    categoria = relationship("CategoriaEvaluacion", back_populates="checklist_items")
+

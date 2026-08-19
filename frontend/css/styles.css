@@ -1,0 +1,26 @@
+/* ============================================================
+   STYLES.CSS — Archivo maestro
+   Importa todos los CSS parciales en el orden correcto.
+   Solo se enlaza este archivo en index.html.
+   ============================================================ */
+
+/* 1. Tokens de diseño */
+@import url('./base/variables.css');
+
+/* 2. Reset y utilidades */
+@import url('./base/reset.css');
+
+/* 3. Layout */
+@import url('./layout/app-shell.css');
+@import url('./layout/sidebar.css');
+
+/* 4. Componentes */
+@import url('./components/badges.css');
+@import url('./components/botones.css');
+@import url('./components/formularios.css');
+@import url('./components/modal.css');
+@import url('./components/tablas.css');
+@import url('./components/tarjetas.css');
+@import url('./components/toast.css');
+@import url('./components/loading.css');
+@import url('./components/evaluaciones.css');

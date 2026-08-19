@@ -1,0 +1,100 @@
+/* ============================================================
+   COMPONENTS / LOADING
+   Skeletons, spinners y estados de carga.
+   ============================================================ */
+
+/* ── Spinner ── */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-default);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.spinner.lg {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Pantalla de carga centrada ── */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ── Skeleton shimmer ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-line:last-child {
+  width: 60%;
+}
+
+.skeleton-card {
+  height: 100px;
+  border-radius: var(--radius-lg);
+}
+
+.skeleton-row {
+  height: 44px;
+  margin-bottom: var(--space-1);
+}
+
+/* ── Contenedor de carga para vistas ── */
+.view-loading {
+  padding: var(--space-6);
+}
+
+.view-loading .skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.view-loading .skeleton-header .skeleton {
+  height: 32px;
+  width: 200px;
+}
+
+.view-loading .skeleton-header .skeleton:last-child {
+  width: 140px;
+}
+
+.view-loading .skeleton-filters {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.view-loading .skeleton-filters .skeleton {
+  height: 38px;
+  width: 160px;
+}

@@ -1,0 +1,113 @@
+/* ============================================================
+   COMPONENTS / FORMULARIOS
+   Inputs, selects y layout de formularios.
+   ============================================================ */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-4);
+}
+
+.form-grid .field-full {
+  grid-column: 1 / -1;
+}
+
+/* ── Campo ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 120px;
+}
+
+.field label,
+.field .lbl {
+  display: block;
+}
+
+/* ── Inputs y selects ── */
+.field input,
+.field select,
+.field textarea,
+input.input,
+select.input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  padding: 0 var(--space-3);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.field textarea {
+  height: auto;
+  min-height: 80px;
+  padding: var(--space-2) var(--space-3);
+  resize: vertical;
+}
+
+/* Hover */
+.field input:hover,
+.field select:hover,
+.field textarea:hover,
+input.input:hover,
+select.input:hover {
+  border-color: var(--border-strong);
+}
+
+/* Focus */
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+input.input:focus,
+select.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+/* Placeholder */
+.field input::placeholder,
+input.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Select con flecha personalizada ── */
+.field select,
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7089' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+}
+
+/* ── Hint debajo del campo ── */
+.field-hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Error en campo ── */
+.field.error input,
+.field.error select {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-muted);
+}
+
+.field.error .field-hint {
+  color: var(--danger);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

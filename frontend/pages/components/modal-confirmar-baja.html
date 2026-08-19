@@ -1,0 +1,27 @@
+<!--
+  COMPONENTE: MODAL CONFIRMAR BAJA / REACTIVACIÓN
+  Se inyecta con data-include="components/modal-confirmar-baja.html"
+  No borra al empleado: solo cambia Empleados.Estado (0/1),
+  para conservar el historial de Asistencia/Planilla/Contratos.
+-->
+<div class="modal-overlay" id="modal-confirmar">
+  <div class="modal-box confirm">
+    <div class="modal-header">
+      <h3 id="modal-confirmar-titulo">Dar de baja a empleado</h3>
+      <button class="modal-close" data-close-modal="modal-confirmar">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="confirm-text" id="modal-confirmar-texto">
+        ¿Confirmas dar de baja a <b>[Nombre del empleado]</b>? El empleado
+        pasará a estado inactivo, pero su historial (asistencia, planilla,
+        contratos) se conserva.
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn ghost" data-close-modal="modal-confirmar">Cancelar</button>
+      <button class="btn primary" id="btn-confirmar-baja">Confirmar</button>
+    </div>
+  </div>
+</div>

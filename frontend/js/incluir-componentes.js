@@ -24,6 +24,10 @@ async function incluirComponentes(){
   }
 
   marcarNavActivo();
+
+  // Avisa al resto de los scripts que los parciales (sidebar, modales, etc.)
+  // ya están en el DOM y es seguro buscarlos con getElementById.
+  document.dispatchEvent(new Event("includes:listos"));
 }
 
 function marcarNavActivo(){

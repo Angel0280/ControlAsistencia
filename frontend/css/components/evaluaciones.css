@@ -1,0 +1,399 @@
+/* ============================================================
+   COMPONENTS / EVALUACIONES
+   Estilos específicos del módulo de Evaluación de Desempeño.
+   Checklist, barras de progreso, badges de puntuación.
+   ============================================================ */
+
+/* ── Modal ancho para evaluaciones ── */
+.modal-box.wide {
+  width: 720px;
+}
+
+/* ── Checklist de categorías ── */
+.checklist-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.checklist-category {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.checklist-category:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+
+.checklist-category .cat-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.checklist-category .cat-name {
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+.checklist-category .cat-peso {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.checklist-category .cat-peso .peso-val {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+/* ── Input de puntaje ── */
+.puntaje-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 80px;
+}
+
+.puntaje-input-group input[type="number"] {
+  width: 72px;
+  height: 38px;
+  text-align: center;
+  font-size: var(--text-base);
+  font-weight: 700;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  transition: all var(--transition-fast);
+}
+
+.puntaje-input-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.puntaje-input-group .puntaje-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ── Observaciones por categoría ── */
+.checklist-category .cat-obs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.checklist-category .cat-obs textarea {
+  width: 100%;
+  min-height: 38px;
+  height: 38px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-primary);
+  resize: vertical;
+  transition: all var(--transition-fast);
+}
+
+.checklist-category .cat-obs textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.checklist-category .cat-obs .obs-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ── Barra de puntuación en tiempo real ── */
+.puntuacion-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.puntuacion-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+  opacity: 0.6;
+}
+
+.puntuacion-preview .preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.puntuacion-preview .preview-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.puntuacion-preview .preview-score {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--transition-normal);
+}
+
+.puntuacion-preview .preview-score.excelente { color: var(--success); }
+.puntuacion-preview .preview-score.bueno { color: var(--warning); }
+.puntuacion-preview .preview-score.mejorar { color: var(--danger); }
+
+.puntuacion-bar-track {
+  height: 8px;
+  background: var(--bg-active);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.puntuacion-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal), background var(--transition-normal);
+  min-width: 0;
+}
+
+.puntuacion-bar-fill.excelente { background: var(--success); }
+.puntuacion-bar-fill.bueno { background: var(--warning); }
+.puntuacion-bar-fill.mejorar { background: var(--danger); }
+
+/* ── Score badge en tabla ── */
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-variant-numeric: tabular-nums;
+}
+
+.score-badge.excelente {
+  color: var(--success);
+  background: var(--success-muted);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.score-badge.bueno {
+  color: var(--warning);
+  background: var(--warning-muted);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.score-badge.mejorar {
+  color: var(--danger);
+  background: var(--danger-muted);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ── Detalle: barras horizontales por categoría ── */
+.detail-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.detail-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-bar-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.detail-bar-score {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-bar-score.excelente { color: var(--success); }
+.detail-bar-score.bueno { color: var(--warning); }
+.detail-bar-score.mejorar { color: var(--danger); }
+
+.detail-bar-track {
+  height: 6px;
+  background: var(--bg-active);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.detail-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.detail-bar-fill.excelente { background: var(--success); }
+.detail-bar-fill.bueno { background: var(--warning); }
+.detail-bar-fill.mejorar { background: var(--danger); }
+
+/* ── Observación en detalle ── */
+.detail-obs {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 2px;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--border-subtle);
+}
+
+/* ── Sección de info en detalle ── */
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.detail-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-info-item .info-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-info-item .info-value {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ── Puntuación grande en detalle ── */
+.detail-score-big {
+  text-align: center;
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-surface));
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+}
+
+.detail-score-big .score-number {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-score-big .score-number.excelente { color: var(--success); }
+.detail-score-big .score-number.bueno { color: var(--warning); }
+.detail-score-big .score-number.mejorar { color: var(--danger); }
+
+.detail-score-big .score-label {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+/* ── Comentarios generales ── */
+.detail-comentarios {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.detail-comentarios .com-title {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.detail-comentarios .com-text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Separador dentro del modal ── */
+.modal-separator {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: var(--space-4) 0 var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-separator:first-child {
+  margin-top: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .modal-box.wide {
+    width: 100%;
+  }
+
+  .checklist-category {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .puntaje-input-group {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .detail-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
